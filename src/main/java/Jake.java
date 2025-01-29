@@ -1,33 +1,37 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Jake {
-    public static String[] tasks = new String[100];
-    public static int taskCount = 0;
+    public static TaskPool taskPool = new TaskPool();
     public static String lineSeparator = "  -----------------------------------------------------------------";
 
     public static void echo(String input) {
         System.out.println("  " + input);
     }
 
-    public static void addTask(String task) {
-       tasks[taskCount++] = task;
-       System.out.print("added: ");
-    }
-
-    public static void printTasks() {
-        for (int i = 0; i < taskCount; i++) {
-            System.out.println("  " + (i + 1) + ". " + tasks[i]);
-        }
-    }
-
     public static void handleInput(String input) {
+        String[] parts = input.split("\\s");
+
         System.out.println(lineSeparator);
-        switch(input.toLowerCase()) {
+        switch(parts[0].toLowerCase()) {
             case "list" -> {
-                printTasks();
+                System.out.println("  Here are the tasks in your list:");
+                taskPool.printTasks();
+            }
+            case "mark" -> {
+                int taskNumber = Integer.parseInt(parts[1]);
+                System.out.println("  Nice! I've marked this task as done:");
+                taskPool.markDone(taskNumber);
+            }
+            case "unmark" -> {
+                int taskNumber = Integer.parseInt(parts[1]);
+                System.out.println("  Nice! I've unmarked this task:");
+                taskPool.markUndone(taskNumber);
             }
             default -> {
-                addTask(input);
+                taskPool.addTask(input);
+                System.out.println("  added: ");
                 echo(input);
             }
         }
