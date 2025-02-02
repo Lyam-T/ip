@@ -3,8 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Jake {
-    public static TaskPool taskPool = new TaskPool();
-    public static String lineSeparator = "  -----------------------------------------------------------------";
+    private static final TaskPool taskPool = new TaskPool();
+    private static final String lineSeparator = "  -----------------------------------------------------------------";
+    
     private static void printWelcomingMessage() {
         System.out.println(lineSeparator);
         System.out.println("  Hello! My name is "
@@ -31,11 +32,11 @@ public class Jake {
         }
     }
 
-    public static void echo(String input) {
+    private static void echo(String input) {
         System.out.println("  " + input);
     }
 
-    public static void handleInput(String input) {
+    private static void handleInput(String input) {
         String[] parts = input.split("\\s");
 
         System.out.println(lineSeparator);
