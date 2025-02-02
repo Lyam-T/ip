@@ -5,6 +5,31 @@ import java.util.Scanner;
 public class Jake {
     public static TaskPool taskPool = new TaskPool();
     public static String lineSeparator = "  -----------------------------------------------------------------";
+    private static void printWelcomingMessage() {
+        System.out.println(lineSeparator);
+        System.out.println("  Hello! My name is "
+                + "Jake"
+                + "... Why I am here again?");
+        System.out.println("  Anyway, what can I do for you this time?");
+        System.out.println(lineSeparator);
+    }
+
+
+    private static void printByeMessage() {
+        System.out.println(lineSeparator);
+        System.out.println("  Bye! Don't find me again, do it yourself!");
+        System.out.println(lineSeparator);
+    }
+
+    private static void readAndHandleInput() {
+        Scanner in = new Scanner(System.in);
+        String input = in.nextLine();
+
+        while (!"bye".equalsIgnoreCase(input)) {
+            handleInput(input);
+            input = in.nextLine();
+        }
+    }
 
     public static void echo(String input) {
         System.out.println("  " + input);
@@ -39,25 +64,8 @@ public class Jake {
     }
 
     public static void main(String[] args) {
-        String name = "Jake";
-        Scanner in = new Scanner(System.in);
-        String input;
-
-        System.out.println(lineSeparator);
-        System.out.println("  Hello! My name is "
-                            + name
-                            + "... Why I am here again?");
-        System.out.println("  Anyway, what can I do for you this time?");
-        System.out.println(lineSeparator);
-
-        input = in.nextLine();
-        while (!"bye".equalsIgnoreCase(input)) {
-            handleInput(input);
-            input = in.nextLine();
-        }
-
-        System.out.println(lineSeparator);
-        System.out.println("  Bye! Don't find me again, do it yourself!");
-        System.out.println(lineSeparator);
+        printWelcomingMessage();
+        readAndHandleInput();
+        printByeMessage();
     }
 }
