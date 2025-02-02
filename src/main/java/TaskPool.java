@@ -25,6 +25,7 @@ public class TaskPool {
     public void markUndone(int taskNumber) {
         isDone.set(taskNumber - 1, false);
     }
+
     public void printTasks() {
         for (int i = 0; i < tasks.size(); i++) {
             if (isDone.get(i)) {
