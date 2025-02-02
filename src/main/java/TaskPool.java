@@ -10,10 +10,18 @@ public class TaskPool {
         isDone.add(false);
     }
 
+    /**
+     * Marks a task as done.
+     * @param taskNumber the task number as shown in the list command, starting from 1.
+     */
     public void markDone(int taskNumber) {
         isDone.set(taskNumber - 1, true);
     }
 
+    /**
+     * Marks a task as undone.
+     * @param taskNumber the task number as shown in the list command, starting from 1.
+     */
     public void markUndone(int taskNumber) {
         isDone.set(taskNumber - 1, false);
     }
