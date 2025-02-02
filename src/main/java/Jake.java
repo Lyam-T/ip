@@ -32,10 +32,6 @@ public class Jake {
         }
     }
 
-    private static void echo(String input) {
-        System.out.println("  " + input);
-    }
-
     private static void handleInput(String input) {
         String[] parts = input.split("\\s");
 
@@ -57,8 +53,7 @@ public class Jake {
             }
             default -> {
                 taskPool.addTask(input);
-                System.out.println("  added: ");
-                echo(input);
+                System.out.println("  added: " + input);
             }
         }
         System.out.println(lineSeparator);
