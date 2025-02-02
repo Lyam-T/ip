@@ -32,6 +32,10 @@ public class Jake {
         }
     }
 
+    /**
+     * Parse the input and execute the command.
+     * @param input the input string from the user.
+     */
     private static void handleInput(String input) {
         String[] parts = input.split("\\s");
 
