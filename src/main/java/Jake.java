@@ -20,6 +20,13 @@ public class Jake {
         System.out.println(lineSeparator);
     }
 
+    private static void printAddTaskMsg() {
+        System.out.println("  Got it. I've added this task:");
+        System.out.print("    ");
+        taskPool.printTask(taskPool.getTaskCount());
+        System.out.println("  Now you have " + taskPool.getTaskCount() + " tasks in the list. More, MoRe, MORE!!!");
+    }
+
     private static void readAndHandleInput() {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
@@ -31,31 +38,63 @@ public class Jake {
     }
 
     /**
+     * Parse the input string into command and arguments.
+     * @param input the input string from the user.
+     * @return an array of strings containing the command and arguments.
+     */
+    private static String[] parseInput(String input) {
+        List<String> result = new ArrayList<String>();
+        String[] commandAndArgs = input.split("\\s", 2);
+        String[] args = commandAndArgs.length > 1 ? commandAndArgs[1].split("/by|/from|/to") : null;
+
+        result.add(commandAndArgs[0]);
+        if (args == null) {
+            return result.toArray(new String[0]);
+        }
+        for (String arg : args) {
+            result.add(arg.trim());
+        }
+
+        return result.toArray(new String[0]);
+    }
+
+    /**
      * Parse the input and execute the command.
      * @param input the input string from the user.
      */
     private static void handleInput(String input) {
-        String[] parts = input.split("\\s");
+        String[] commandAndArgs = parseInput(input);
 
         System.out.println(lineSeparator);
-        switch(parts[0].toLowerCase()) {
+        switch(commandAndArgs[0].toLowerCase()) {
             case "list" -> {
                 System.out.println("  Here are the tasks in your list:");
                 taskPool.printTasks();
             }
             case "mark" -> {
-                int taskNumber = Integer.parseInt(parts[1]);
+                int taskNumber = Integer.parseInt(commandAndArgs[1]);
                 System.out.println("  Nice! I've marked this task as done:");
                 taskPool.markDone(taskNumber);
             }
             case "unmark" -> {
-                int taskNumber = Integer.parseInt(parts[1]);
+                int taskNumber = Integer.parseInt(commandAndArgs[1]);
                 System.out.println("  Nice! I've unmarked this task:");
                 taskPool.markUndone(taskNumber);
             }
+            case "todo" -> {
+                taskPool.addToDo(commandAndArgs[1]);
+                printAddTaskMsg();
+            }
+            case "deadline" -> {
+                taskPool.addDeadline(commandAndArgs[1], commandAndArgs[2]);
+                printAddTaskMsg();
+            }
+            case "event" -> {
+                taskPool.addEvent(commandAndArgs[1], commandAndArgs[2], commandAndArgs[3]);
+                printAddTaskMsg();
+            }
             default -> {
-                taskPool.addTask(input);
-                System.out.println("  added: " + input);
+                System.out.println("  I'm sorry, but I don't know what that means :-(");
             }
         }
         System.out.println(lineSeparator);
