@@ -6,7 +6,7 @@ public class Jake {
     private static final TaskPool taskPool = new TaskPool();
     private static final String lineSeparator = "  -----------------------------------------------------------------";
     
-    private static void printWelcomingMessage() {
+    private static void printWelcomingMsg() {
         System.out.println(lineSeparator);
         System.out.println("  Hello! My name is "
                 + "Jake"
@@ -16,7 +16,7 @@ public class Jake {
     }
 
 
-    private static void printByeMessage() {
+    private static void printByeMsg() {
         System.out.println(lineSeparator);
         System.out.println("  Bye! Don't find me again, do it yourself!");
         System.out.println(lineSeparator);
@@ -64,8 +64,8 @@ public class Jake {
     }
 
     public static void main(String[] args) {
-        printWelcomingMessage();
+        printWelcomingMsg();
         readAndHandleInput();
-        printByeMessage();
+        printByeMsg();
     }
 }
