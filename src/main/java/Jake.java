@@ -8,9 +8,7 @@ public class Jake {
     
     private static void printWelcomingMsg() {
         System.out.println(lineSeparator);
-        System.out.println("  Hello! My name is "
-                + "Jake"
-                + "... Why I am here again?");
+        System.out.println("  Hello! My name is Jake... Why am I here again?");
         System.out.println("  Anyway, what can I do for you this time?");
         System.out.println(lineSeparator);
     }
