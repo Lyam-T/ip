@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Jake {
     private static final TaskPool taskPool = new TaskPool();
@@ -27,6 +28,18 @@ public class Jake {
         System.out.println("  Now you have " + taskPool.getTaskCount() + " tasks in the list. More, MoRe, MORE!!!");
     }
 
+    private static void printMarkTaskMsg() {
+        System.out.println("  Nice! I've marked this task as done:");
+        System.out.print("    ");
+        taskPool.printTask(taskPool.getTaskCount());
+    }
+
+    private static void printUnmarkTaskMsg() {
+        System.out.println("  Nice! I've unmarked this task:");
+        System.out.print("    ");
+        taskPool.printTask(taskPool.getTaskCount());
+    }
+
     private static void readAndHandleInput() {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
@@ -45,7 +58,7 @@ public class Jake {
     private static String[] parseInput(String input) {
         List<String> result = new ArrayList<String>();
         String[] commandAndArgs = input.split("\\s", 2);
-        String[] args = commandAndArgs.length > 1 ? commandAndArgs[1].split("/by|/from|/to") : null;
+        String[] args = commandAndArgs.length > 1 ? commandAndArgs[1].split("(?i)/by|/from|/to") : null;
 
         result.add(commandAndArgs[0]);
         if (args == null) {
