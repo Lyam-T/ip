@@ -1,0 +1,8 @@
+toDo borrow book
+deaDLine return book /By Sunday
+EvEnt project meeting /fRoM Monday 2pm /TO Monday 4pm
+maRK 1
+lIsT
+uNMark 1
+liST
+bYe
