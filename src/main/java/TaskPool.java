@@ -20,7 +20,7 @@ public class TaskPool {
      * Marks a task as done.
      * @param taskNumber the task number as shown in the list command, starting from 1.
      */
-    public void markDone(int taskNumber) {
+    public void markTaskAsDone(int taskNumber) {
         tasks.get(taskNumber - 1).markDone();
     }
 
@@ -28,7 +28,7 @@ public class TaskPool {
      * Marks a task as undone.
      * @param taskNumber the task number as shown in the list command, starting from 1.
      */
-    public void markUndone(int taskNumber) {
+    public void markTaskAsUndone(int taskNumber) {
         tasks.get(taskNumber - 1).markUndone();
     }
 

@@ -86,12 +86,12 @@ public class Jake {
             }
             case "mark" -> {
                 int taskNumber = Integer.parseInt(commandAndArgs[1]);
-                taskPool.markDone(taskNumber);
+                taskPool.markTaskAsDone(taskNumber);
                 printMarkTaskMsg();
             }
             case "unmark" -> {
                 int taskNumber = Integer.parseInt(commandAndArgs[1]);
-                taskPool.markUndone(taskNumber);
+                taskPool.markTaskAsUndone(taskNumber);
                 printUnmarkTaskMsg();
             }
             case "todo" -> {
