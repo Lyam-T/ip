@@ -78,30 +78,30 @@ public class Jake {
         String[] commandAndArgs = parseInput(input);
 
         System.out.println(lineSeparator);
-        switch(commandAndArgs[0].toLowerCase()) {
-            case "list" -> {
+        switch (Command.valueOf(commandAndArgs[0].toUpperCase())) {
+            case LIST -> {
                 System.out.println("  Here are the tasks in your list:");
                 taskPool.printTasks();
             }
-            case "mark" -> {
+            case MARK -> {
                 int taskNumber = Integer.parseInt(commandAndArgs[1]);
                 taskPool.markTaskAsDone(taskNumber);
                 printMarkTaskMsg();
             }
-            case "unmark" -> {
+            case UNMARK -> {
                 int taskNumber = Integer.parseInt(commandAndArgs[1]);
                 taskPool.markTaskAsUndone(taskNumber);
                 printUnmarkTaskMsg();
             }
-            case "todo" -> {
+            case TODO -> {
                 taskPool.addToDo(commandAndArgs[1]);
                 printAddTaskMsg();
             }
-            case "deadline" -> {
+            case DEADLINE -> {
                 taskPool.addDeadline(commandAndArgs[1], commandAndArgs[2]);
                 printAddTaskMsg();
             }
-            case "event" -> {
+            case EVENT -> {
                 taskPool.addEvent(commandAndArgs[1], commandAndArgs[2], commandAndArgs[3]);
                 printAddTaskMsg();
             }
