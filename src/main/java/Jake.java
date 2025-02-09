@@ -78,23 +78,23 @@ public class Jake {
         String[] commandAndArgs = parseInput(input);
 
         System.out.println(lineSeparator);
-        switch(commandAndArgs[0].toLowerCase()) {
-            case "list" -> {
+        switch (Command.valueOf(commandAndArgs[0].toUpperCase())) {
+            case LIST -> {
                 handleList();
             }
-            case "mark" -> {
+            case MARK -> {
                 handleMark(commandAndArgs);
             }
-            case "unmark" -> {
+            case UNMARK -> {
                 handleUnmark(commandAndArgs);
             }
-            case "todo" -> {
+            case TODO -> {
                 handleTodo(commandAndArgs);
             }
-            case "deadline" -> {
+            case DEADLINE -> {
                 handleDeadline(commandAndArgs);
             }
-            case "event" -> {
+            case EVENT -> {
                 handleEvent(commandAndArgs);
             }
             default -> {
