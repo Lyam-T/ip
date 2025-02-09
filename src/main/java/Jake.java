@@ -80,36 +80,90 @@ public class Jake {
         System.out.println(lineSeparator);
         switch(commandAndArgs[0].toLowerCase()) {
             case "list" -> {
-                System.out.println("  Here are the tasks in your list:");
-                taskPool.printTasks();
+                handleList();
             }
             case "mark" -> {
-                int taskNumber = Integer.parseInt(commandAndArgs[1]);
-                taskPool.markTaskAsDone(taskNumber);
-                printMarkTaskMsg();
+                handleMark(commandAndArgs);
             }
             case "unmark" -> {
-                int taskNumber = Integer.parseInt(commandAndArgs[1]);
-                taskPool.markTaskAsUndone(taskNumber);
-                printUnmarkTaskMsg();
+                handleUnmark(commandAndArgs);
             }
             case "todo" -> {
-                taskPool.addToDo(commandAndArgs[1]);
-                printAddTaskMsg();
+                handleTodo(commandAndArgs);
             }
             case "deadline" -> {
-                taskPool.addDeadline(commandAndArgs[1], commandAndArgs[2]);
-                printAddTaskMsg();
+                handleDeadline(commandAndArgs);
             }
             case "event" -> {
-                taskPool.addEvent(commandAndArgs[1], commandAndArgs[2], commandAndArgs[3]);
-                printAddTaskMsg();
+                handleEvent(commandAndArgs);
             }
             default -> {
-                System.out.println("  I'm sorry, but I don't know what that means :-(");
+                handleDefault();
             }
         }
         System.out.println(lineSeparator);
+    }
+
+    private static void handleDefault() {
+        System.out.println("  I'm sorry, but I don't know what that means :-(");
+    }
+
+    private static void handleEvent(String[] commandAndArgs) {
+        try {
+            taskPool.addEvent(commandAndArgs[1], commandAndArgs[2], commandAndArgs[3]);
+            printAddTaskMsg();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  [event] cannot be processed. Please enter a task name, a start time and an end time.");
+        }
+    }
+
+    private static void handleDeadline(String[] commandAndArgs) {
+        try {
+            taskPool.addDeadline(commandAndArgs[1], commandAndArgs[2]);
+            printAddTaskMsg();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  [deadline] cannot be processed. Please enter a task name and a deadline.");
+        }
+    }
+
+    private static void handleTodo(String[] commandAndArgs) {
+        try {
+            taskPool.addToDo(commandAndArgs[1]);
+            printAddTaskMsg();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  [todo] cannot be processed. Please enter a task name.");
+        }
+    }
+
+    private static void handleUnmark(String[] commandAndArgs) {
+        try {
+            int taskNumber = Integer.parseInt(commandAndArgs[1]);
+            taskPool.markTaskAsUndone(taskNumber);
+            printUnmarkTaskMsg();
+        } catch (NumberFormatException e) {
+            System.out.println("  [unmark] cannot be processed. Please enter a number instead of anything else... don't give me addition workload :<");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  [unmark] cannot be processed. Please enter a valid task number. Check the list to see the task number.");
+            taskPool.printTasks();
+        }
+    }
+
+    private static void handleList() {
+        System.out.println("  Here are the tasks in your list:");
+        taskPool.printTasks();
+    }
+
+    private static void handleMark(String[] commandAndArgs) {
+        try {
+            int taskNumber = Integer.parseInt(commandAndArgs[1]);
+            taskPool.markTaskAsDone(taskNumber);
+            printMarkTaskMsg();
+        } catch (NumberFormatException e) {
+            System.out.println("  [mark] cannot be processed. Please enter a number instead of anything else... don't give me addition workload :<");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("  [mark] cannot be processed. Please enter a valid task number. Check the list to see the task number.");
+            taskPool.printTasks();
+        }
     }
 
     public static void main(String[] args) {
