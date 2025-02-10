@@ -1,3 +1,5 @@
+package Jake.TaskManagement;
+
 public class Task {
     private String name;
     private boolean isDone = false;

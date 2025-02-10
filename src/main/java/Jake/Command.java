@@ -1,3 +1,5 @@
+package Jake;
+
 public enum Command {
     LIST,
     MARK,
