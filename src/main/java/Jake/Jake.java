@@ -89,31 +89,32 @@ public class Jake {
         String[] commandAndArgs = parseInput(input);
 
         System.out.println(lineSeparator);
-        switch (Command.valueOf(commandAndArgs[0].toUpperCase())) {
-            case LIST -> {
-                handleList();
+        try {
+            switch (Command.valueOf(commandAndArgs[0].toUpperCase())) {
+                case LIST -> {
+                    handleList();
+                }
+                case MARK -> {
+                    handleMark(commandAndArgs);
+                }
+                case UNMARK -> {
+                    handleUnmark(commandAndArgs);
+                }
+                case TODO -> {
+                    handleTodo(commandAndArgs);
+                }
+                case DEADLINE -> {
+                    handleDeadline(commandAndArgs);
+                }
+                case EVENT -> {
+                    handleEvent(commandAndArgs);
+                }
+                case DELETE -> {
+                    handleDelete(commandAndArgs);
+                }
             }
-            case MARK -> {
-                handleMark(commandAndArgs);
-            }
-            case UNMARK -> {
-                handleUnmark(commandAndArgs);
-            }
-            case TODO -> {
-                handleTodo(commandAndArgs);
-            }
-            case DEADLINE -> {
-                handleDeadline(commandAndArgs);
-            }
-            case EVENT -> {
-                handleEvent(commandAndArgs);
-            }
-            case DELETE ->  {
-                handleDelete(commandAndArgs);
-            }
-            default -> {
-                handleDefault();
-            }
+        } catch (IllegalArgumentException e) {
+           handleDefault();
         }
         System.out.println(lineSeparator);
     }
