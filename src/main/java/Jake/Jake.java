@@ -30,6 +30,13 @@ public class Jake {
         System.out.println("  Now you have " + taskPool.getTaskCount() + " tasks in the list. More, MoRe, MORE!!!");
     }
 
+    private static void printDeleteTaskMsg() {
+        System.out.println("  Noted. I've removed this task:");
+        System.out.print("    ");
+        taskPool.printTask(taskPool.getTaskCount());
+        System.out.println("  Now you have " + taskPool.getTaskCount() + " tasks in the list. Bad, BaD, BAD!!!");
+    }
+
     private static void printMarkTaskMsg() {
         System.out.println("  Nice! I've marked this task as done:");
         System.out.print("    ");
@@ -100,6 +107,9 @@ public class Jake {
             case EVENT -> {
                 handleEvent(commandAndArgs);
             }
+            case DELETE ->  {
+                handleDelete(commandAndArgs);
+            }
             default -> {
                 handleDefault();
             }
@@ -109,6 +119,19 @@ public class Jake {
 
     private static void handleDefault() {
         System.out.println("  I'm sorry, but I don't know what that means :-(");
+    }
+
+    private static void handleDelete(String[] commandAndArgs) {
+       try {
+           int taskNumber = Integer.parseInt(commandAndArgs[1]);
+           taskPool.deleteTask(taskNumber);
+           printDeleteTaskMsg();
+       } catch(NumberFormatException e) {
+           System.out.println("  [delete] cannot be processed. Please enter a number instead of anything else... don't give me addition workload :<");
+       } catch (IndexOutOfBoundsException e) {
+           System.out.println("  [delete] cannot be processed. Please enter a valid task number. Check the list to see the task number.");
+           taskPool.printTasks();
+       }
     }
 
     private static void handleEvent(String[] commandAndArgs) {

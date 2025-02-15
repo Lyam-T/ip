@@ -18,6 +18,10 @@ public class TaskPool {
         tasks.add(new Event(name, from, to));
     }
 
+    public void deleteTask(int taskNumber) {
+        tasks.remove(taskNumber - 1);
+    }
+
     /**
      * Marks a task as done.
      * @param taskNumber the task number as shown in the list command, starting from 1.
