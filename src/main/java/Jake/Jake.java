@@ -1,5 +1,6 @@
 package Jake;
 
+import Jake.IOManagement.IOManager;
 import Jake.TaskManagement.TaskPool;
 import java.util.ArrayList;
 import java.util.List;
@@ -194,7 +195,9 @@ public class Jake {
 
     public static void main(String[] args) {
         printWelcomingMsg();
+        IOManager.readTasksFromFile(taskPool);
         readAndHandleInput();
+        IOManager.writeTasksToFile(taskPool);
         printByeMsg();
     }
 }

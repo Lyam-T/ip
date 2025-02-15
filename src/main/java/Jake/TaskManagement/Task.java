@@ -20,7 +20,15 @@ public class Task {
         return this.isDone;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public String toString() {
         return (isDone) ? "[X] " + name : "[ ] " + name;
+    }
+
+    public String toFileString() {
+        return null;
     }
 }
