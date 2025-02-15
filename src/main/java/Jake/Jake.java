@@ -7,38 +7,34 @@ import java.util.Scanner;
 
 public class Jake {
     private static final TaskPool taskPool = new TaskPool();
-    private static final String lineSeparator = "  -----------------------------------------------------------------";
-    
+
     private static void printWelcomingMsg() {
-        System.out.println(lineSeparator);
-        System.out.println("  Hello! My name is Jake... Why am I here again?");
-        System.out.println("  Anyway, what can I do for you this time?");
-        System.out.println(lineSeparator);
+        System.out.println(Message.LINE_SEPARATOR);
+        System.out.println(Message.WELCOME);
+        System.out.println(Message.LINE_SEPARATOR);
     }
 
 
     private static void printByeMsg() {
-        System.out.println(lineSeparator);
-        System.out.println("  Bye! Don't find me again, do it yourself!");
-        System.out.println(lineSeparator);
+        System.out.println(Message.LINE_SEPARATOR);
+        System.out.println(Message.BYE);
+        System.out.println(Message.LINE_SEPARATOR);
     }
 
     private static void printAddTaskMsg() {
-        System.out.println("  Got it. I've added this task:");
-        System.out.print("    ");
+        System.out.println(Message.ADD_TASK);
+        System.out.print(Message.INDENT);
         taskPool.printTask(taskPool.getTaskCount());
-        System.out.println("  Now you have " + taskPool.getTaskCount() + " tasks in the list. More, MoRe, MORE!!!");
+        System.out.println(String.format(Message.NUM_TASKS, taskPool.getTaskCount()));
     }
 
     private static void printMarkTaskMsg() {
-        System.out.println("  Nice! I've marked this task as done:");
-        System.out.print("    ");
+        System.out.println(Message.MARK_TASK + Message.INDENT);
         taskPool.printTask(taskPool.getTaskCount());
     }
 
     private static void printUnmarkTaskMsg() {
-        System.out.println("  Nice! I've unmarked this task:");
-        System.out.print("    ");
+        System.out.println(Message.UNMARK_TASK + Message.INDENT);
         taskPool.printTask(taskPool.getTaskCount());
     }
 
@@ -73,6 +69,7 @@ public class Jake {
         return result.toArray(new String[0]);
     }
 
+
     /**
      * Parse the input and execute the command.
      * @param input the input string from the user.
@@ -80,7 +77,7 @@ public class Jake {
     private static void handleInput(String input) {
         String[] commandAndArgs = parseInput(input);
 
-        System.out.println(lineSeparator);
+        System.out.println(Message.LINE_SEPARATOR);
         switch (Command.valueOf(commandAndArgs[0].toUpperCase())) {
             case LIST -> {
                 handleList();
@@ -104,11 +101,11 @@ public class Jake {
                 handleDefault();
             }
         }
-        System.out.println(lineSeparator);
+        System.out.println(Message.LINE_SEPARATOR);
     }
 
     private static void handleDefault() {
-        System.out.println("  I'm sorry, but I don't know what that means :-(");
+        System.out.println(Message.UNKNOWN_COMMAND);
     }
 
     private static void handleEvent(String[] commandAndArgs) {
@@ -116,7 +113,7 @@ public class Jake {
             taskPool.addEvent(commandAndArgs[1], commandAndArgs[2], commandAndArgs[3]);
             printAddTaskMsg();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  [event] cannot be processed. Please enter a task name, a start time and an end time.");
+            System.out.println(commandAndArgs[0] + Message.MISSING_PARAMS);
         }
     }
 
@@ -125,7 +122,7 @@ public class Jake {
             taskPool.addDeadline(commandAndArgs[1], commandAndArgs[2]);
             printAddTaskMsg();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  [deadline] cannot be processed. Please enter a task name and a deadline.");
+            System.out.println(commandAndArgs[0] + Message.MISSING_PARAMS);
         }
     }
 
@@ -134,7 +131,7 @@ public class Jake {
             taskPool.addToDo(commandAndArgs[1]);
             printAddTaskMsg();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  [todo] cannot be processed. Please enter a task name.");
+            System.out.println(commandAndArgs[0] + Message.MISSING_PARAMS);
         }
     }
 
@@ -144,15 +141,15 @@ public class Jake {
             taskPool.markTaskAsUndone(taskNumber);
             printUnmarkTaskMsg();
         } catch (NumberFormatException e) {
-            System.out.println("  [unmark] cannot be processed. Please enter a number instead of anything else... don't give me addition workload :<");
+            System.out.println(commandAndArgs[0] + Message.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  [unmark] cannot be processed. Please enter a valid task number. Check the list to see the task number.");
+            System.out.println(commandAndArgs[0] + Message.MISSING_PARAMS);
             taskPool.printTasks();
         }
     }
 
     private static void handleList() {
-        System.out.println("  Here are the tasks in your list:");
+        System.out.println(Message.LIST_TASKS);
         taskPool.printTasks();
     }
 
@@ -162,9 +159,9 @@ public class Jake {
             taskPool.markTaskAsDone(taskNumber);
             printMarkTaskMsg();
         } catch (NumberFormatException e) {
-            System.out.println("  [mark] cannot be processed. Please enter a number instead of anything else... don't give me addition workload :<");
+            System.out.println(commandAndArgs[0] + Message.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("  [mark] cannot be processed. Please enter a valid task number. Check the list to see the task number.");
+            System.out.println(commandAndArgs[0] + Message.MISSING_PARAMS);
             taskPool.printTasks();
         }
     }
