@@ -19,7 +19,7 @@ public class IOManager {
             Scanner fileScanner = new Scanner(file);
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-                taskPool.addTaskFromFileString(line.split(" \\| "));
+                taskPool.addTaskFromFileString(line.split("\\|"));
             }
             fileScanner.close();
         } catch (IOException e) {
