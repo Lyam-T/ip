@@ -18,6 +18,10 @@ public class TaskPool {
         tasks.add(new Event(name, from, to));
     }
 
+    public void deleteTask(int taskNumber) {
+        tasks.remove(taskNumber - 1);
+    }
+
     /**
      * Marks a task as done.
      * @param taskNumber the task number as shown in the list command, starting from 1.
@@ -42,6 +46,27 @@ public class TaskPool {
 
     public Integer getTaskCount() {
         return tasks.size();
+    }
+
+    public void addTaskFromFileString(String[] taskInfo) {
+        switch (taskInfo[0]) {
+            case "T" -> {
+                tasks.add(new ToDo(taskInfo[1], taskInfo[2].equals("1")));
+            }
+            case "D" -> {
+                tasks.add(new Deadline(taskInfo[1], taskInfo[2].equals("1"), taskInfo[3]));
+            }
+            case "E" -> {
+                tasks.add(new Event(taskInfo[1], taskInfo[2].equals("1"), taskInfo[3], taskInfo[4]));
+            }
+            default -> {
+                System.out.println("Invalid task type in file.");
+            }
+        }
+    }
+
+    public String toFileString(int i) {
+        return tasks.get(i).toFileString();
     }
 
     /**

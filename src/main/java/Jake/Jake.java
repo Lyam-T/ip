@@ -1,5 +1,6 @@
 package Jake;
 
+import Jake.IOManagement.IOManager;
 import Jake.TaskManagement.TaskPool;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,13 @@ public class Jake {
         System.out.print(Message.INDENT);
         taskPool.printTask(taskPool.getTaskCount());
         System.out.println(String.format(Message.NUM_TASKS, taskPool.getTaskCount()));
+    }
+
+    private static void printDeleteTaskMsg() {
+        System.out.println("  Noted. I've removed this task:");
+        System.out.print("    ");
+        taskPool.printTask(taskPool.getTaskCount());
+        System.out.println("  Now you have " + taskPool.getTaskCount() + " tasks in the list. Bad, BaD, BAD!!!");
     }
 
     private static void printMarkTaskMsg() {
@@ -69,7 +77,6 @@ public class Jake {
         return result.toArray(new String[0]);
     }
 
-
     /**
      * Parse the input and execute the command.
      * @param input the input string from the user.
@@ -78,34 +85,51 @@ public class Jake {
         String[] commandAndArgs = parseInput(input);
 
         System.out.println(Message.LINE_SEPARATOR);
-        switch (Command.valueOf(commandAndArgs[0].toUpperCase())) {
-            case LIST -> {
-                handleList();
+        try {
+            switch (Command.valueOf(commandAndArgs[0].toUpperCase())) {
+                case LIST -> {
+                    handleList();
+                }
+                case MARK -> {
+                    handleMark(commandAndArgs);
+                }
+                case UNMARK -> {
+                    handleUnmark(commandAndArgs);
+                }
+                case TODO -> {
+                    handleTodo(commandAndArgs);
+                }
+                case DEADLINE -> {
+                    handleDeadline(commandAndArgs);
+                }
+                case EVENT -> {
+                    handleEvent(commandAndArgs);
+                }
+                case DELETE -> {
+                    handleDelete(commandAndArgs);
+                }
             }
-            case MARK -> {
-                handleMark(commandAndArgs);
-            }
-            case UNMARK -> {
-                handleUnmark(commandAndArgs);
-            }
-            case TODO -> {
-                handleTodo(commandAndArgs);
-            }
-            case DEADLINE -> {
-                handleDeadline(commandAndArgs);
-            }
-            case EVENT -> {
-                handleEvent(commandAndArgs);
-            }
-            default -> {
-                handleDefault();
-            }
+        } catch (IllegalArgumentException e) {
+           handleDefault();
         }
         System.out.println(Message.LINE_SEPARATOR);
     }
 
     private static void handleDefault() {
         System.out.println(Message.UNKNOWN_COMMAND);
+    }
+
+    private static void handleDelete(String[] commandAndArgs) {
+       try {
+           int taskNumber = Integer.parseInt(commandAndArgs[1]);
+           taskPool.deleteTask(taskNumber);
+           printDeleteTaskMsg();
+       } catch(NumberFormatException e) {
+           System.out.println("  [delete] cannot be processed. Please enter a number instead of anything else... don't give me addition workload :<");
+       } catch (IndexOutOfBoundsException e) {
+           System.out.println("  [delete] cannot be processed. Please enter a valid task number. Check the list to see the task number.");
+           taskPool.printTasks();
+       }
     }
 
     private static void handleEvent(String[] commandAndArgs) {
@@ -168,7 +192,9 @@ public class Jake {
 
     public static void main(String[] args) {
         printWelcomingMsg();
+        IOManager.readTasksFromFile(taskPool);
         readAndHandleInput();
+        IOManager.writeTasksToFile(taskPool);
         printByeMsg();
     }
 }
