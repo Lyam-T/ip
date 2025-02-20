@@ -26,14 +26,13 @@ public class Jake {
         System.out.println(Message.ADD_TASK);
         System.out.print(Message.INDENT);
         taskPool.printTask(taskPool.getTaskCount());
-        System.out.println(String.format(Message.NUM_TASKS, taskPool.getTaskCount()));
+        System.out.println(Message.NUM_TASKS + taskPool.getTaskCount() + Message.MORE);
     }
 
     private static void printDeleteTaskMsg() {
-        System.out.println("  Noted. I've removed this task:");
-        System.out.print("    ");
+        System.out.println(Message.DELETE_TASK);
         taskPool.printTask(taskPool.getTaskCount());
-        System.out.println("  Now you have " + taskPool.getTaskCount() + " tasks in the list. Bad, BaD, BAD!!!");
+        System.out.println(Message.NUM_TASKS + taskPool.getTaskCount() + Message.BAD);
     }
 
     private static void printMarkTaskMsg() {
@@ -125,9 +124,9 @@ public class Jake {
            taskPool.deleteTask(taskNumber);
            printDeleteTaskMsg();
        } catch(NumberFormatException e) {
-           System.out.println("  [delete] cannot be processed. Please enter a number instead of anything else... don't give me addition workload :<");
+           System.out.println(commandAndArgs[0] + Message.INVALID_PARAMS);
        } catch (IndexOutOfBoundsException e) {
-           System.out.println("  [delete] cannot be processed. Please enter a valid task number. Check the list to see the task number.");
+           System.out.println(commandAndArgs[0] + Message.INVALID_PARAMS + "\n" + Message.CHECK_CUR_TASKS);
            taskPool.printTasks();
        }
     }
