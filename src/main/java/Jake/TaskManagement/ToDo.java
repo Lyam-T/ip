@@ -1,5 +1,7 @@
 package Jake.TaskManagement;
 
+import Jake.Message;
+
 public class ToDo extends Task {
     public ToDo(String name) {
         super(name);
@@ -14,11 +16,13 @@ public class ToDo extends Task {
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return Message.TODO + super.toString();
     }
 
     @Override
     public String toFileString() {
-        return "T | " + super.getName() + " | " + (isDone() ? "1" : "0") + " | ";
+        return Message.TODO_FILE + Message.VERTICAL_BAR
+                + super.getName() + Message.VERTICAL_BAR
+                + (isDone() ? Message.TRUE : Message.FALSE);
     }
 }

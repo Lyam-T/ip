@@ -1,5 +1,8 @@
 package Jake.TaskManagement;
 
+import Jake.Command;
+import Jake.Message;
+
 public class Event extends Task {
     private final String from;
     private final String to;
@@ -21,11 +24,15 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (" + from + " -> " + to + ")";
+        return Message.EVENT + super.toString() + Message.INDENT + String.format(Message.DURATION, from, to);
     }
 
     @Override
     public String toFileString() {
-        return "E | " + super.getName() + " | " + (isDone() ? "1" : "0") + " | " + from + " | " + to;
+        return Message.EVENT_FILE + Message.VERTICAL_BAR
+                + super.getName() + Message.VERTICAL_BAR
+                + (isDone() ? Message.TRUE : Message.FALSE) + Message.VERTICAL_BAR 
+                + from + Message.VERTICAL_BAR
+                + to;
     }
 }

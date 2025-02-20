@@ -2,6 +2,7 @@ package Jake.TaskManagement;
 
 import java.util.ArrayList;
 import java.util.List;
+import Jake.Message;
 
 public class TaskPool {
     private final List<Task> tasks = new ArrayList<>();
@@ -50,17 +51,17 @@ public class TaskPool {
 
     public void addTaskFromFileString(String[] taskInfo) {
         switch (taskInfo[0]) {
-            case "T" -> {
-                tasks.add(new ToDo(taskInfo[1], taskInfo[2].equals("1")));
+            case Message.TODO_FILE -> {
+                tasks.add(new ToDo(taskInfo[1], taskInfo[2].equals(Message.TRUE)));
             }
-            case "D" -> {
-                tasks.add(new Deadline(taskInfo[1], taskInfo[2].equals("1"), taskInfo[3]));
+            case Message.DEADLINE_FILE -> {
+                tasks.add(new Deadline(taskInfo[1], taskInfo[2]));
             }
-            case "E" -> {
-                tasks.add(new Event(taskInfo[1], taskInfo[2].equals("1"), taskInfo[3], taskInfo[4]));
+            case Message.EVENT_FILE -> {
+                tasks.add(new Event(taskInfo[1], taskInfo[2].equals(Message.TRUE), taskInfo[3], taskInfo[4]));
             }
             default -> {
-                System.out.println("Invalid task type in file.");
+                System.out.println(Message.INVALID_TASK_TYPE);
             }
         }
     }
