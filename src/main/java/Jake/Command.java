@@ -1,11 +1,22 @@
 package Jake;
 
 public enum Command {
-    LIST,
-    MARK,
-    UNMARK,
-    TODO,
-    DEADLINE,
-    EVENT,
-    DELETE
+    LIST("[LIST]"),
+    MARK("[MARK]"),
+    UNMARK("[UNMARK]"),
+    TODO("[TODO]"),
+    DEADLINE("[DEADLINE]"),
+    EVENT("[EVENT]"),
+    DELETE("[DELETE]");
+
+    private final String command;
+
+    Command(String command) {
+        this.command = command;
+    }
+
+    @Override
+    public String toString() {
+        return this.command;
+    }
 }
