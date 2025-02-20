@@ -26,13 +26,13 @@ public class Jake {
         System.out.println(Message.ADD_TASK);
         System.out.print(Message.INDENT);
         taskPool.printTask(taskPool.getTaskCount());
-        System.out.println(Message.NUM_TASKS + taskPool.getTaskCount() + Message.MORE);
+        System.out.println(String.format(Message.NUM_TASKS, taskPool.getTaskCount()) + Message.MORE);
     }
 
     private static void printDeleteTaskMsg() {
         System.out.println(Message.DELETE_TASK);
         taskPool.printTask(taskPool.getTaskCount());
-        System.out.println(Message.NUM_TASKS + taskPool.getTaskCount() + Message.BAD);
+        System.out.println(String.format(Message.NUM_TASKS, taskPool.getTaskCount()) + Message.BAD);
     }
 
     private static void printMarkTaskMsg() {
