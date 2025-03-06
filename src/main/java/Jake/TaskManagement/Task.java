@@ -1,6 +1,6 @@
 package Jake.TaskManagement;
 
-import Jake.Message;
+import Jake.Ui;
 
 public class Task {
     private String name;
@@ -12,7 +12,7 @@ public class Task {
 
     public void markDone() {
         if (isDone) {
-            System.out.println(Message.DONE_ALREADY);
+            System.out.println(Ui.DONE_ALREADY);
         }
 
         isDone = true;
@@ -20,7 +20,7 @@ public class Task {
 
     public void markUndone() {
         if (!isDone) {
-            System.out.println(Message.UNDONE_ALREADY);
+            System.out.println(Ui.UNDONE_ALREADY);
         }
         
         isDone = false;
@@ -35,8 +35,8 @@ public class Task {
     }
 
     public String toString() {
-        return (isDone) ? Message.DONE_SYMBOL + Message.INDENT + name
-                        : Message.NOT_DONE_SYMBOL + Message.INDENT + name;
+        return (isDone) ? Ui.DONE_SYMBOL + Ui.INDENT + name
+                        : Ui.NOT_DONE_SYMBOL + Ui.INDENT + name;
     }
 
     public String toFileString() {

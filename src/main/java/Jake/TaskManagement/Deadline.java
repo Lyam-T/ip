@@ -1,7 +1,6 @@
 package Jake.TaskManagement;
 
-import Jake.Command;
-import Jake.Message;
+import Jake.Ui;
 
 public class Deadline extends Task {
     private final String by;
@@ -13,14 +12,14 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return Message.DEADLINE + super.toString() + Message.INDENT +  String.format(Message.GG, by);
+        return Ui.DEADLINE + super.toString() + Ui.INDENT +  String.format(Ui.GG, by);
     }
 
     @Override
     public String toFileString() {
-        return Message.DEADLINE_FILE + Message.VERTICAL_BAR
-                + super.getName() + Message.VERTICAL_BAR
-                + (isDone() ? Message.TRUE : Message.FALSE) + Message.VERTICAL_BAR
+        return Ui.DEADLINE_FILE + Ui.VERTICAL_BAR
+                + super.getName() + Ui.VERTICAL_BAR
+                + (isDone() ? Ui.TRUE : Ui.FALSE) + Ui.VERTICAL_BAR
                 + by;
     }
 }
