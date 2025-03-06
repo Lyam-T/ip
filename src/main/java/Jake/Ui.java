@@ -44,6 +44,7 @@ public class Ui {
     static public final String MISSING_PARAMS = "Missing parameters! Please check your input and try again.";
     static public final String INVALID_PARAMS = "Invalid parameters! Please check your input and try again.";
     static public final String INVALID_TASK_TYPE = "Invalid task type! Please check your input and try again.";
+    static public final String INVALID_DATE_TIME_FORMAT = "Invalid date/time format! Please check your input and try again.";
 
     public void printWelcomingMsg() {
         System.out.println(LINE_SEPARATOR);

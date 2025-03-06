@@ -5,6 +5,7 @@ import Jake.TaskManagement.Task;
 import Jake.TaskManagement.TaskPool;
 import Jake.Ui;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -28,12 +29,9 @@ public class Executor {
         }
     }
 
-    public String[] parseInput(String input) {
-        return parser.parseInput(input);
-    }
 
     public void handleInput(String input) {
-        String[] commandAndArgs = parseInput(input);
+        String[] commandAndArgs = parser.parseInput(input);
 
         System.out.println(Ui.LINE_SEPARATOR);
         try {
@@ -92,6 +90,8 @@ public class Executor {
             ui.printAddTaskMsg(taskPool);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
+        } catch (DateTimeParseException e) {
+            System.out.println(Ui.INVALID_DATE_TIME_FORMAT);
         }
     }
 
@@ -101,6 +101,8 @@ public class Executor {
             ui.printAddTaskMsg(taskPool);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
+        } catch (DateTimeParseException e) {
+            System.out.println(Ui.INVALID_DATE_TIME_FORMAT);
         }
     }
 
