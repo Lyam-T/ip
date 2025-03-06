@@ -1,7 +1,13 @@
 package Jake.Execution;
 
+import Jake.Ui;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import Jake.Ui;
 
 public class Parser {
     /**
@@ -24,5 +30,11 @@ public class Parser {
         }
 
         return result.toArray(new String[0]);
+    }
+
+    public LocalDateTime parseDateTime(String dateTime) {
+        DateTimeFormatter formatter;
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return LocalDateTime.parse(dateTime, formatter);
     }
 }

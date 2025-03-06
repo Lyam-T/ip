@@ -1,22 +1,25 @@
 package Jake.TaskManagement;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import Jake.Ui;
+import Jake.Execution.Parser;
 
 public class TaskPool {
     private final List<Task> tasks = new ArrayList<>();
+    private final Parser parser = new Parser();
 
     public void addToDo(String name) {
         tasks.add(new ToDo(name));
     }
 
     public void addDeadline(String name, String by) {
-        tasks.add(new Deadline(name, by));
+        tasks.add(new Deadline(name, parser.parseDateTime(by)));
     }
 
     public void addEvent(String name, String from, String to) {
-        tasks.add(new Event(name, from, to));
+        tasks.add(new Event(name, parser.parseDateTime(from), parser.parseDateTime(to)));
     }
 
     public void deleteTask(int taskNumber) {
@@ -55,10 +58,10 @@ public class TaskPool {
                 tasks.add(new ToDo(taskInfo[1], taskInfo[2].equals(Ui.TRUE)));
             }
             case Ui.DEADLINE_FILE -> {
-                tasks.add(new Deadline(taskInfo[1], taskInfo[2]));
+                tasks.add(new Deadline(taskInfo[1], parser.parseDateTime(taskInfo[3])));
             }
             case Ui.EVENT_FILE -> {
-                tasks.add(new Event(taskInfo[1], taskInfo[2].equals(Ui.TRUE), taskInfo[3], taskInfo[4]));
+                tasks.add(new Event(taskInfo[1], taskInfo[2].equals(Ui.TRUE), parser.parseDateTime(taskInfo[3]), parser.parseDateTime(taskInfo[4])));
             }
             default -> {
                 System.out.println(Ui.INVALID_TASK_TYPE);
