@@ -12,12 +12,13 @@ public class Jake {
     private static final TaskPool taskPool = new TaskPool();
     private static final Executor executor = new Executor(taskPool);
     private static final Ui ui = new Ui();
+    private static final IOManager ioManager = new IOManager(taskPool);
 
     public static void main(String[] args) {
         ui.printWelcomingMsg();
-        IOManager.readTasksFromFile(taskPool);
+        ioManager.readTasksFromFile();
         executor.readAndHandleInput();
-        IOManager.writeTasksToFile(taskPool);
+        ioManager.writeTasksToFile();
         ui.printByeMsg();
     }
 }
