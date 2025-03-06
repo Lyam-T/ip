@@ -69,6 +69,11 @@ public class TaskPool {
         }
     }
 
+    /**
+     * Finds tasks that contain the keyword.
+     * @param keyword
+     * @return a list of tasks that contain the keyword.
+     */
     public ArrayList<Task> findTask(String keyword) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : tasks) {
