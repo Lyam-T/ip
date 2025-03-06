@@ -9,8 +9,13 @@ import java.io.IOException;
 public class IOManager {
     private static final String FILE_PATH = "./data/tasks.txt";
     private static final File file = new File(FILE_PATH);
+    private final TaskPool taskPool;
 
-    public static void readTasksFromFile(TaskPool taskPool) {
+    public IOManager(TaskPool taskPool) {
+        this.taskPool = taskPool;
+    }
+
+    public void readTasksFromFile() {
         try {
             if (!file.exists()) {
                 return;
@@ -27,7 +32,7 @@ public class IOManager {
         }
     }
 
-    public static void writeTasksToFile(TaskPool taskPool) {
+    public void writeTasksToFile() {
         try {
             if (!file.exists()) {
                 file.getParentFile().mkdirs();

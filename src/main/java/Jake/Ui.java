@@ -1,6 +1,8 @@
 package Jake;
 
-public class Message {
+import Jake.TaskManagement.TaskPool;
+
+public class Ui {
     static public final String INDENT = "  ";
     static public final String LINE_SEPARATOR = INDENT + "-----------------------------------------------------------------";
     static public final String VERTICAL_BAR = "|";
@@ -41,4 +43,39 @@ public class Message {
     static public final String INVALID_PARAMS = "Invalid parameters! Please check your input and try again.";
     static public final String INVALID_TASK_TYPE = "Invalid task type! Please check your input and try again.";
 
+    public void printWelcomingMsg() {
+        System.out.println(LINE_SEPARATOR);
+        System.out.println(WELCOME);
+        System.out.println(LINE_SEPARATOR);
+    }
+
+
+    public void printByeMsg() {
+        System.out.println(LINE_SEPARATOR);
+        System.out.println(BYE);
+        System.out.println(LINE_SEPARATOR);
+    }
+
+    public void printAddTaskMsg(TaskPool taskPool) {
+        System.out.println(ADD_TASK);
+        System.out.print(INDENT);
+        taskPool.printTask(taskPool.getTaskCount());
+        System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount()) + MORE);
+    }
+
+    public void printDeleteTaskMsg(TaskPool taskPool) {
+        System.out.println(DELETE_TASK);
+        taskPool.printTask(taskPool.getTaskCount());
+        System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount()) + BAD);
+    }
+
+    public void printMarkTaskMsg(TaskPool taskPool) {
+        System.out.println(MARK_TASK + INDENT);
+        taskPool.printTask(taskPool.getTaskCount());
+    }
+
+    public void printUnmarkTaskMsg(TaskPool taskPool) {
+        System.out.println(UNMARK_TASK + INDENT);
+        taskPool.printTask(taskPool.getTaskCount());
+    }
 }

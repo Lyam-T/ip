@@ -1,7 +1,6 @@
 package Jake.TaskManagement;
 
-import Jake.Command;
-import Jake.Message;
+import Jake.Ui;
 
 public class Event extends Task {
     private final String from;
@@ -24,15 +23,15 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return Message.EVENT + super.toString() + Message.INDENT + String.format(Message.DURATION, from, to);
+        return Ui.EVENT + super.toString() + Ui.INDENT + String.format(Ui.DURATION, from, to);
     }
 
     @Override
     public String toFileString() {
-        return Message.EVENT_FILE + Message.VERTICAL_BAR
-                + super.getName() + Message.VERTICAL_BAR
-                + (isDone() ? Message.TRUE : Message.FALSE) + Message.VERTICAL_BAR 
-                + from + Message.VERTICAL_BAR
+        return Ui.EVENT_FILE + Ui.VERTICAL_BAR
+                + super.getName() + Ui.VERTICAL_BAR
+                + (isDone() ? Ui.TRUE : Ui.FALSE) + Ui.VERTICAL_BAR
+                + from + Ui.VERTICAL_BAR
                 + to;
     }
 }
