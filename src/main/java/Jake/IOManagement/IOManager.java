@@ -6,6 +6,9 @@ import java.io.FileWriter;
 import Jake.TaskManagement.TaskPool;
 import java.io.IOException;
 
+/**
+ * Manages the reading and writing of tasks to and from a file.
+ */
 public class IOManager {
     private static final String FILE_PATH = "./data/tasks.txt";
     private static final File file = new File(FILE_PATH);

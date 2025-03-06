@@ -32,6 +32,13 @@ public class Parser {
         return result.toArray(new String[0]);
     }
 
+    /**
+     * Parse the date and time string into a LocalDateTime object.
+     *
+     * @param dateTime
+     * @return LocalDateTime object
+     * @throws DateTimeParseException
+     */
     public LocalDateTime parseDateTime(String dateTime) {
         DateTimeFormatter formatter;
         formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
