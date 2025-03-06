@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Contains the main logic of the program.
+ */
 public class Executor {
     private final Parser parser = new Parser();
     private final TaskPool taskPool;

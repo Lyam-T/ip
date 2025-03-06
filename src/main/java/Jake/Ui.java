@@ -2,6 +2,9 @@ package Jake;
 
 import Jake.TaskManagement.TaskPool;
 
+/**
+ * Contains all the message prompts and related functions that the end user will see.
+ */
 public class Ui {
     static public final String INDENT = "  ";
     static public final String LINE_SEPARATOR = INDENT + "-----------------------------------------------------------------";
