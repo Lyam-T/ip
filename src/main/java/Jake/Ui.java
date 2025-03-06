@@ -36,6 +36,8 @@ public class Ui {
     static public final String UNDONE_ALREADY = INDENT + "Task is already undone! Don't need to mark it undone again.";
     static public final String GG = "(gg by: %s)";
     static public final String DURATION = "(%s -> %s)";
+    static public final String NO_TASKS_FOUND = INDENT + "There is no such task in your list, hmmm... weird.";
+    static public final String FOUND_TASK = INDENT + "Here is the matching task in your list:";
 
     static public final String CHECK_CUR_TASKS = INDENT + "Here are the tasks in your list:";
 

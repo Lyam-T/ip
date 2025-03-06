@@ -69,6 +69,16 @@ public class TaskPool {
         }
     }
 
+    public ArrayList<Task> findTask(String keyword) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getName().contains(keyword)) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks;
+    }
+
     public String toFileString(int i) {
         return tasks.get(i).toFileString();
     }
