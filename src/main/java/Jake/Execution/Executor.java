@@ -1,6 +1,7 @@
 package Jake.Execution;
 
 import Jake.Command;
+import Jake.TaskManagement.Task;
 import Jake.TaskManagement.TaskPool;
 import Jake.Ui;
 
@@ -57,6 +58,9 @@ public class Executor {
                 }
                 case DELETE -> {
                     handleDelete(commandAndArgs);
+                }
+                case FIND -> {
+                    handleFind(commandAndArgs);
                 }
             }
         } catch (IllegalArgumentException e) {
@@ -137,6 +141,22 @@ public class Executor {
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
             taskPool.printTasks();
+        }
+    }
+
+    private void handleFind(String[] commandAndArgs) {
+        try {
+            List<Task> foundTasks = taskPool.findTask(commandAndArgs[1]);
+            if (foundTasks.isEmpty()) {
+                System.out.println(Ui.NO_TASKS_FOUND);
+            } else {
+                System.out.println(Ui.FOUND_TASK);
+                for (int i = 0; i < foundTasks.size(); i++) {
+                    System.out.println("  " + (i + 1) + ". " + foundTasks.get(i));
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
         }
     }
 }

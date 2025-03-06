@@ -7,7 +7,8 @@ public enum Command {
     TODO("[TODO]"),
     DEADLINE("[DEADLINE]"),
     EVENT("[EVENT]"),
-    DELETE("[DELETE]");
+    DELETE("[DELETE]"),
+    FIND("[FIND]");
 
     private final String command;
 
