@@ -83,7 +83,7 @@ public class Executor {
             System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS + "\n" + Ui.CHECK_CUR_TASKS);
-            taskPool.printTasks();
+            ui.printTasks(taskPool);
         }
     }
 
@@ -127,13 +127,12 @@ public class Executor {
             System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
-            taskPool.printTasks();
+            ui.printTasks(taskPool);
         }
     }
 
     private void handleList() {
-        System.out.println(Ui.LIST_TASKS);
-        taskPool.printTasks();
+        ui.printTasks(taskPool);
     }
 
     private void handleMark(String[] commandAndArgs) {
@@ -145,7 +144,7 @@ public class Executor {
             System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
-            taskPool.printTasks();
+            ui.printTasks(taskPool);
         }
     }
 

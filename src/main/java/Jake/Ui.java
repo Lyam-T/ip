@@ -91,4 +91,13 @@ public class Ui {
             taskPool.printTask(taskNumber);
         }
     }
+
+    public void printTasks(TaskPool taskPool) {
+        if (taskPool.getTaskCount() == 0) {
+            System.out.println(INDENT + "There are no tasks in your list.");
+        } else {
+            System.out.println(LIST_TASKS);
+            taskPool.printTasks();
+        }
+    }
 }
