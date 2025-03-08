@@ -94,7 +94,7 @@ public class Executor {
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
         } catch (DateTimeParseException e) {
-            System.out.println(Ui.INVALID_DATE_TIME_FORMAT);
+            ui.printDateTimeParseException();
         }
     }
 
@@ -105,7 +105,7 @@ public class Executor {
         } catch (IndexOutOfBoundsException e) {
             System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
         } catch (DateTimeParseException e) {
-            System.out.println(Ui.INVALID_DATE_TIME_FORMAT);
+            ui.printDateTimeParseException();
         }
     }
 
