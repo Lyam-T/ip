@@ -55,13 +55,13 @@ public class TaskPool {
     public void addTaskFromFileString(String[] taskInfo) {
         switch (taskInfo[0]) {
             case Ui.TODO_FILE -> {
-                tasks.add(new ToDo(taskInfo[1], taskInfo[2].equals(Ui.TRUE)));
+                tasks.add(new ToDo(taskInfo[1], Ui.TRUE.equals(taskInfo[2])));
             }
             case Ui.DEADLINE_FILE -> {
-                tasks.add(new Deadline(taskInfo[1], taskInfo[2].equals(Ui.TRUE), parser.parseDateTime(taskInfo[3])));
+                tasks.add(new Deadline(taskInfo[1], Ui.TRUE.equals(taskInfo[2]), parser.parseDateTime(taskInfo[3])));
             }
             case Ui.EVENT_FILE -> {
-                tasks.add(new Event(taskInfo[1], taskInfo[2].equals(Ui.TRUE), parser.parseDateTime(taskInfo[3]), parser.parseDateTime(taskInfo[4])));
+                tasks.add(new Event(taskInfo[1], Ui.TRUE.equals(taskInfo[2]), parser.parseDateTime(taskInfo[3]), parser.parseDateTime(taskInfo[4])));
             }
             default -> {
                 System.out.println(Ui.INVALID_TASK_TYPE);
