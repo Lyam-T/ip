@@ -77,8 +77,8 @@ public class Executor {
     private void handleDelete(String[] commandAndArgs) {
         try {
             int taskNumber = Integer.parseInt(commandAndArgs[1]);
+            ui.printDeleteTaskMsg(taskPool, taskNumber);
             taskPool.deleteTask(taskNumber);
-            ui.printDeleteTaskMsg(taskPool);
         } catch (NumberFormatException e) {
             System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {
@@ -121,8 +121,8 @@ public class Executor {
     private void handleUnmark(String[] commandAndArgs) {
         try {
             int taskNumber = Integer.parseInt(commandAndArgs[1]);
-            taskPool.markTaskAsUndone(taskNumber);
-            ui.printUnmarkTaskMsg(taskPool);
+            Boolean isUnmarked = taskPool.markTaskAsUndone(taskNumber);
+            ui.printUnmarkTaskMsg(taskPool, taskNumber, isUnmarked);
         } catch (NumberFormatException e) {
             System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {
@@ -139,8 +139,8 @@ public class Executor {
     private void handleMark(String[] commandAndArgs) {
         try {
             int taskNumber = Integer.parseInt(commandAndArgs[1]);
-            taskPool.markTaskAsDone(taskNumber);
-            ui.printMarkTaskMsg(taskPool);
+            Boolean isMarked = taskPool.markTaskAsDone(taskNumber);
+            ui.printMarkTaskMsg(taskPool, taskNumber, isMarked);
         } catch (NumberFormatException e) {
             System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
         } catch (IndexOutOfBoundsException e) {

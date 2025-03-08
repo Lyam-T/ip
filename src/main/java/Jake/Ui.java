@@ -63,25 +63,32 @@ public class Ui {
     }
 
     public void printAddTaskMsg(TaskPool taskPool) {
-        System.out.println(ADD_TASK);
-        System.out.print(INDENT);
+        System.out.println(ADD_TASK + INDENT);
         taskPool.printTask(taskPool.getTaskCount());
         System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount()) + MORE);
     }
 
-    public void printDeleteTaskMsg(TaskPool taskPool) {
-        System.out.println(DELETE_TASK);
-        taskPool.printTask(taskPool.getTaskCount());
-        System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount()) + BAD);
+    public void printDeleteTaskMsg(TaskPool taskPool, Integer taskNumber) {
+        System.out.println(DELETE_TASK + INDENT);
+        taskPool.printTask(taskNumber);
+        System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount() - 1) + BAD);
     }
 
-    public void printMarkTaskMsg(TaskPool taskPool) {
-        System.out.println(MARK_TASK + INDENT);
-        taskPool.printTask(taskPool.getTaskCount());
+    public void printMarkTaskMsg(TaskPool taskPool, Integer taskNumber, Boolean isMarked) {
+        if (!isMarked) {
+            System.out.println(DONE_ALREADY);
+        } else {
+            System.out.println(MARK_TASK + INDENT);
+            taskPool.printTask(taskNumber);
+        }
     }
 
-    public void printUnmarkTaskMsg(TaskPool taskPool) {
-        System.out.println(UNMARK_TASK + INDENT);
-        taskPool.printTask(taskPool.getTaskCount());
+    public void printUnmarkTaskMsg(TaskPool taskPool, Integer taskNumber, Boolean isUnmarked) {
+        if (!isUnmarked) {
+            System.out.println(UNDONE_ALREADY);
+        } else {
+            System.out.println(UNMARK_TASK + INDENT);
+            taskPool.printTask(taskNumber);
+        }
     }
 }
