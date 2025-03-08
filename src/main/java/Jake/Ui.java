@@ -48,6 +48,7 @@ public class Ui {
     static public final String INVALID_PARAMS = "Invalid parameters! Please check your input and try again.";
     static public final String INVALID_TASK_TYPE = "Invalid task type! Please check your input and try again.";
     static public final String INVALID_DATE_TIME_FORMAT = "Invalid date/time format! Please check your input and try again.";
+    static public final String CORRECT_DATE_TIME_FORMAT = "Correct date/time format: yyyy-MM-dd HH:mm, ie 2021-09-30 18:00.";
 
     public void printWelcomingMsg() {
         System.out.println(LINE_SEPARATOR);
@@ -99,5 +100,10 @@ public class Ui {
             System.out.println(LIST_TASKS);
             taskPool.printTasks();
         }
+    }
+
+    public void printDateTimeParseException() {
+        System.out.println(INDENT + INVALID_DATE_TIME_FORMAT);
+        System.out.println(INDENT + CORRECT_DATE_TIME_FORMAT);
     }
 }
