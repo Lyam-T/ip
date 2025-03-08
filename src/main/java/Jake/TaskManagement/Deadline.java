@@ -12,6 +12,14 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public Deadline(String name, boolean isDone, LocalDateTime by) {
+        super(name);
+        if (isDone) {
+            super.markDone();
+        }
+        this.by = by;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");

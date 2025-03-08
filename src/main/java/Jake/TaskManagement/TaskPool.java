@@ -58,7 +58,7 @@ public class TaskPool {
                 tasks.add(new ToDo(taskInfo[1], taskInfo[2].equals(Ui.TRUE)));
             }
             case Ui.DEADLINE_FILE -> {
-                tasks.add(new Deadline(taskInfo[1], parser.parseDateTime(taskInfo[3])));
+                tasks.add(new Deadline(taskInfo[1], taskInfo[2].equals(Ui.TRUE), parser.parseDateTime(taskInfo[3])));
             }
             case Ui.EVENT_FILE -> {
                 tasks.add(new Event(taskInfo[1], taskInfo[2].equals(Ui.TRUE), parser.parseDateTime(taskInfo[3]), parser.parseDateTime(taskInfo[4])));
