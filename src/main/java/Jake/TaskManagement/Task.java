@@ -10,20 +10,22 @@ public class Task {
         this.name = name;
     }
 
-    public void markDone() {
+    public Boolean markDone() {
         if (isDone) {
-            System.out.println(Ui.DONE_ALREADY);
+            return false;
         }
 
         isDone = true;
+        return true;
     }
 
-    public void markUndone() {
+    public Boolean markUndone() {
         if (!isDone) {
-            System.out.println(Ui.UNDONE_ALREADY);
+            return false;
         }
         
         isDone = false;
+        return true;
     }
 
     public boolean isDone() {

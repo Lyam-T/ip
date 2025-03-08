@@ -29,17 +29,18 @@ public class TaskPool {
     /**
      * Marks a task as done.
      * @param taskNumber the task number as shown in the list command, starting from 1.
+     * @return true if the task is successfully marked as done else false.
      */
-    public void markTaskAsDone(int taskNumber) {
-        tasks.get(taskNumber - 1).markDone();
+    public Boolean markTaskAsDone(int taskNumber) {
+        return tasks.get(taskNumber - 1).markDone();
     }
 
     /**
      * Marks a task as undone.
      * @param taskNumber the task number as shown in the list command, starting from 1.
      */
-    public void markTaskAsUndone(int taskNumber) {
-        tasks.get(taskNumber - 1).markUndone();
+    public Boolean markTaskAsUndone(int taskNumber) {
+        return tasks.get(taskNumber - 1).markUndone();
     }
 
     public void printTasks() {
@@ -93,6 +94,6 @@ public class TaskPool {
      * @param taskNumber the task number as shown in the list command, starting from 1.
      */
     public void printTask(int taskNumber) {
-        System.out.println(tasks.get(taskNumber - 1));
+        System.out.println(Ui.INDENT + tasks.get(taskNumber - 1));
     }
 }
