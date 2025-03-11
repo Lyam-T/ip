@@ -29,17 +29,18 @@ public class TaskPool {
     /**
      * Marks a task as done.
      * @param taskNumber the task number as shown in the list command, starting from 1.
+     * @return true if the task is successfully marked as done else false.
      */
-    public void markTaskAsDone(int taskNumber) {
-        tasks.get(taskNumber - 1).markDone();
+    public Boolean markTaskAsDone(int taskNumber) {
+        return tasks.get(taskNumber - 1).markDone();
     }
 
     /**
      * Marks a task as undone.
      * @param taskNumber the task number as shown in the list command, starting from 1.
      */
-    public void markTaskAsUndone(int taskNumber) {
-        tasks.get(taskNumber - 1).markUndone();
+    public Boolean markTaskAsUndone(int taskNumber) {
+        return tasks.get(taskNumber - 1).markUndone();
     }
 
     public void printTasks() {
@@ -55,13 +56,13 @@ public class TaskPool {
     public void addTaskFromFileString(String[] taskInfo) {
         switch (taskInfo[0]) {
             case Ui.TODO_FILE -> {
-                tasks.add(new ToDo(taskInfo[1], taskInfo[2].equals(Ui.TRUE)));
+                tasks.add(new ToDo(taskInfo[1], Ui.TRUE.equals(taskInfo[2])));
             }
             case Ui.DEADLINE_FILE -> {
-                tasks.add(new Deadline(taskInfo[1], parser.parseDateTime(taskInfo[3])));
+                tasks.add(new Deadline(taskInfo[1], Ui.TRUE.equals(taskInfo[2]), parser.parseDateTime(taskInfo[3])));
             }
             case Ui.EVENT_FILE -> {
-                tasks.add(new Event(taskInfo[1], taskInfo[2].equals(Ui.TRUE), parser.parseDateTime(taskInfo[3]), parser.parseDateTime(taskInfo[4])));
+                tasks.add(new Event(taskInfo[1], Ui.TRUE.equals(taskInfo[2]), parser.parseDateTime(taskInfo[3]), parser.parseDateTime(taskInfo[4])));
             }
             default -> {
                 System.out.println(Ui.INVALID_TASK_TYPE);
@@ -93,6 +94,6 @@ public class TaskPool {
      * @param taskNumber the task number as shown in the list command, starting from 1.
      */
     public void printTask(int taskNumber) {
-        System.out.println(tasks.get(taskNumber - 1));
+        System.out.println(Ui.INDENT + tasks.get(taskNumber - 1));
     }
 }

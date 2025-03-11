@@ -48,6 +48,7 @@ public class Ui {
     static public final String INVALID_PARAMS = "Invalid parameters! Please check your input and try again.";
     static public final String INVALID_TASK_TYPE = "Invalid task type! Please check your input and try again.";
     static public final String INVALID_DATE_TIME_FORMAT = "Invalid date/time format! Please check your input and try again.";
+    static public final String CORRECT_DATE_TIME_FORMAT = "Correct date/time format: yyyy-MM-dd HH:mm, ie 2021-09-30 18:00.";
 
     public void printWelcomingMsg() {
         System.out.println(LINE_SEPARATOR);
@@ -63,25 +64,46 @@ public class Ui {
     }
 
     public void printAddTaskMsg(TaskPool taskPool) {
-        System.out.println(ADD_TASK);
-        System.out.print(INDENT);
+        System.out.println(ADD_TASK + INDENT);
         taskPool.printTask(taskPool.getTaskCount());
         System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount()) + MORE);
     }
 
-    public void printDeleteTaskMsg(TaskPool taskPool) {
-        System.out.println(DELETE_TASK);
-        taskPool.printTask(taskPool.getTaskCount());
-        System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount()) + BAD);
+    public void printDeleteTaskMsg(TaskPool taskPool, Integer taskNumber) {
+        System.out.println(DELETE_TASK + INDENT);
+        taskPool.printTask(taskNumber);
+        System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount() - 1) + BAD);
     }
 
-    public void printMarkTaskMsg(TaskPool taskPool) {
-        System.out.println(MARK_TASK + INDENT);
-        taskPool.printTask(taskPool.getTaskCount());
+    public void printMarkTaskMsg(TaskPool taskPool, Integer taskNumber, Boolean isMarked) {
+        if (!isMarked) {
+            System.out.println(DONE_ALREADY);
+        } else {
+            System.out.println(MARK_TASK + INDENT);
+            taskPool.printTask(taskNumber);
+        }
     }
 
-    public void printUnmarkTaskMsg(TaskPool taskPool) {
-        System.out.println(UNMARK_TASK + INDENT);
-        taskPool.printTask(taskPool.getTaskCount());
+    public void printUnmarkTaskMsg(TaskPool taskPool, Integer taskNumber, Boolean isUnmarked) {
+        if (!isUnmarked) {
+            System.out.println(UNDONE_ALREADY);
+        } else {
+            System.out.println(UNMARK_TASK + INDENT);
+            taskPool.printTask(taskNumber);
+        }
+    }
+
+    public void printTasks(TaskPool taskPool) {
+        if (taskPool.getTaskCount() == 0) {
+            System.out.println(INDENT + "There are no tasks in your list.");
+        } else {
+            System.out.println(LIST_TASKS);
+            taskPool.printTasks();
+        }
+    }
+
+    public void printDateTimeParseException() {
+        System.out.println(INDENT + INVALID_DATE_TIME_FORMAT);
+        System.out.println(INDENT + CORRECT_DATE_TIME_FORMAT);
     }
 }
