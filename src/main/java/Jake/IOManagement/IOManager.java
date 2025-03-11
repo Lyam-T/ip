@@ -18,6 +18,9 @@ public class IOManager {
         this.taskPool = taskPool;
     }
 
+    /**
+     * Reads tasks from the file and adds them to the task pool.
+     */
     public void readTasksFromFile() {
         try {
             if (!file.exists()) {
@@ -35,6 +38,9 @@ public class IOManager {
         }
     }
 
+    /**
+     * Writes tasks to the file.
+     */
     public void writeTasksToFile() {
         try {
             if (!file.exists()) {
