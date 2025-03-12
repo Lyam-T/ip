@@ -27,12 +27,10 @@ Format: `todo <DESCRIPTION>`
 #### `deadline`
 Add a deadline task to the task list.  
 Format: `deadline <DESCRIPTION> /by <DATE>`
-> [!CAUTION]
 > Date format: `YYYY-MM-DD HH:MM`, eg `2021-09-17 23:59`
 #### `event`
 Add an event task to the task list.  
 Format: `event <DESCRIPTION> /at <DATE>`  
-> [!CAUTION] 
 > Date format: `YYYY-MM-DD HH:MM`, eg `2021-09-17 23:59`
 ### List Task
 List all tasks in the task list.
@@ -41,22 +39,18 @@ Format: `list`
 ##### `mark`
 Mark a task as done.
 Format: `mark <INDEX>`
-> [!CAUTION]
 > INDEX refers to the index number shown in the displayed task list, ie starting from 1.
 ##### `unmark`
 Unmark a task as done.
 Format: `unmark <INDEX>`
-> [!CAUTION]
 > INDEX refers to the index number shown in the displayed task list, ie starting from 1.
 ### Delete Task `delete`
 Delete a task from the task list.
 Format: `delete <INDEX>`
-> [!CAUTION]
 > INDEX refers to the index number shown in the displayed task list, ie starting from 1.
 ### Find Task `find`
 Find tasks that contain the keyword.
 Format: `find <KEYWORD>`
-> [!NOTE]
 > <KEYWORD> is case-sensitive, and is referred to the description of the task. See [Add Task](#add-task) for more information about description.
 ## Command Summary
 | Command  | Format                                                                                                             | Example                                                                                                                           |
