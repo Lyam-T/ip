@@ -2,7 +2,7 @@
 Jake is a app for task management and optimised for user who prefers command line interface.
 - [Quick Start](#quickstart)
 - [Features](#features)
-  - [Add Task](#add-Task)
+  - [Add Task](#add-task)
     - [`todo`](#todo)
     - [`deadline`](#deadline)
     - [`event`](#event)
@@ -26,32 +26,32 @@ Add a todo task to the task list.
 Format: `todo <DESCRIPTION>`
 #### `deadline`
 Add a deadline task to the task list.  
-Format: `deadline <DESCRIPTION> /by <DATE>`
-> Date format: `YYYY-MM-DD HH:MM`, eg `2021-09-17 23:59`
+Format: `deadline <DESCRIPTION> /by <DATE>`  
+`<Date>` Format: `YYYY-MM-DD HH:MM`, eg `2021-09-17 23:59`
 #### `event`
 Add an event task to the task list.  
 Format: `event <DESCRIPTION> /at <DATE>`  
-> Date format: `YYYY-MM-DD HH:MM`, eg `2021-09-17 23:59`
+`<Date>` Format: `YYYY-MM-DD HH:MM`, eg `2021-09-17 23:59`
 ### List Task
-List all tasks in the task list.
+List all tasks in the task list.  
 Format: `list`
 ### Mark Task
 ##### `mark`
-Mark a task as done.
-Format: `mark <INDEX>`
-> INDEX refers to the index number shown in the displayed task list, ie starting from 1.
+Mark a task as done.  
+Format: `mark <INDEX>`  
+`<INDEX>` refers to the index number shown in the displayed task list, ie starting from 1.
 ##### `unmark`
-Unmark a task as done.
-Format: `unmark <INDEX>`
-> INDEX refers to the index number shown in the displayed task list, ie starting from 1.
-### Delete Task `delete`
-Delete a task from the task list.
-Format: `delete <INDEX>`
-> INDEX refers to the index number shown in the displayed task list, ie starting from 1.
-### Find Task `find`
+Unmark a task as done.  
+Format: `unmark <INDEX>`  
+`<INDEX>` refers to the index number shown in the displayed task list, ie starting from 1.
+### Delete Task
+Delete a task from the task list.  
+Format: `delete <INDEX>`  
+`<INDEX>` refers to the index number shown in the displayed task list, ie starting from 1.
+### Find Task
 Find tasks that contain the keyword.
-Format: `find <KEYWORD>`
-> <KEYWORD> is case-sensitive, and is referred to the description of the task. See [Add Task](#add-task) for more information about description.
+Format: `find <KEYWORD>`  
+`<KEYWORD>` is case-sensitive, and is referred to the description of the task. See [Add Task](#add-task) for more information about description.
 ## Command Summary
 | Command  | Format                                                                                                             | Example                                                                                                                           |
 |----------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
