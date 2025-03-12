@@ -106,4 +106,23 @@ public class Ui {
         System.out.println(INDENT + INVALID_DATE_TIME_FORMAT);
         System.out.println(INDENT + CORRECT_DATE_TIME_FORMAT);
     }
+
+    public void printException(String command, Exception e) {
+        System.out.print(INDENT + Command.valueOf(command.toUpperCase()));
+        switch (e.getClass().getName()) {
+            case "IndexOutOfBoundsException" -> {
+                System.out.println(INDENT + command + MISSING_PARAMS);
+            }
+            case "NumberFormatException" -> {
+                System.out.println(INDENT + command + INVALID_PARAMS);
+            }
+            case "DateTimeParseException" -> {
+                System.out.println(INDENT + INVALID_DATE_TIME_FORMAT);
+                System.out.println(INDENT + CORRECT_DATE_TIME_FORMAT);
+            }
+            default -> {
+                System.out.println(INDENT + e.getMessage());
+            }
+        }
+    }
 }

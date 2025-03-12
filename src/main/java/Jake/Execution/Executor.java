@@ -80,9 +80,10 @@ public class Executor {
             ui.printDeleteTaskMsg(taskPool, taskNumber);
             taskPool.deleteTask(taskNumber);
         } catch (NumberFormatException e) {
-            System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
+            ui.printException(commandAndArgs[0], e);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS + "\n" + Ui.CHECK_CUR_TASKS);
+            ui.printException(commandAndArgs[0], e);
+            System.out.println(Ui.CHECK_CUR_TASKS);
             ui.printTasks(taskPool);
         }
     }
@@ -91,10 +92,8 @@ public class Executor {
         try {
             taskPool.addEvent(commandAndArgs[1], commandAndArgs[2], commandAndArgs[3]);
             ui.printAddTaskMsg(taskPool);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
-        } catch (DateTimeParseException e) {
-            ui.printDateTimeParseException();
+        } catch (IndexOutOfBoundsException | DateTimeParseException e) {
+            ui.printException(commandAndArgs[0], e);
         }
     }
 
@@ -102,10 +101,8 @@ public class Executor {
         try {
             taskPool.addDeadline(commandAndArgs[1], commandAndArgs[2]);
             ui.printAddTaskMsg(taskPool);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
-        } catch (DateTimeParseException e) {
-            ui.printDateTimeParseException();
+        } catch (IndexOutOfBoundsException | DateTimeParseException e) {
+            ui.printException(commandAndArgs[0], e);
         }
     }
 
@@ -114,7 +111,7 @@ public class Executor {
             taskPool.addToDo(commandAndArgs[1]);
             ui.printAddTaskMsg(taskPool);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
+            ui.printException(commandAndArgs[0], e);
         }
     }
 
@@ -124,9 +121,10 @@ public class Executor {
             Boolean isUnmarked = taskPool.markTaskAsUndone(taskNumber);
             ui.printUnmarkTaskMsg(taskPool, taskNumber, isUnmarked);
         } catch (NumberFormatException e) {
-            System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
+            ui.printException(commandAndArgs[0], e);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
+            ui.printException(commandAndArgs[0], e);
+            System.out.println(Ui.CHECK_CUR_TASKS);
             ui.printTasks(taskPool);
         }
     }
@@ -141,9 +139,10 @@ public class Executor {
             Boolean isMarked = taskPool.markTaskAsDone(taskNumber);
             ui.printMarkTaskMsg(taskPool, taskNumber, isMarked);
         } catch (NumberFormatException e) {
-            System.out.println(commandAndArgs[0] + Ui.INVALID_PARAMS);
+            ui.printException(commandAndArgs[0], e);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
+            ui.printException(commandAndArgs[0], e);
+            System.out.println(Ui.CHECK_CUR_TASKS);
             ui.printTasks(taskPool);
         }
     }
@@ -160,7 +159,7 @@ public class Executor {
                 }
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(commandAndArgs[0] + Ui.MISSING_PARAMS);
+            ui.printException(commandAndArgs[0], e);
         }
     }
 }
