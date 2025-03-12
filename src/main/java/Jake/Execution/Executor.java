@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Contains the main logic of the program.
+ * Contains the main command execution logic of the program.
  */
 public class Executor {
     private final Parser parser = new Parser();
@@ -22,6 +22,9 @@ public class Executor {
         this.taskPool = taskPool;
     }
 
+    /**
+     * Start the main logic to reads and handles the user input.
+     */
     public void readAndHandleInput() {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
@@ -32,7 +35,10 @@ public class Executor {
         }
     }
 
-
+    /**
+     * Handles the user input.
+     * @param input
+     */
     public void handleInput(String input) {
         String[] commandAndArgs = parser.parseInput(input);
 
@@ -70,10 +76,18 @@ public class Executor {
         System.out.println(Ui.LINE_SEPARATOR);
     }
 
+    /**
+     * Handles the default case when the command is not recognized.
+     */
     private static void handleDefault() {
         System.out.println(Ui.UNKNOWN_COMMAND);
     }
 
+    /**
+     * Handles the delete command.
+     * @param commandAndArgs, [0] the command,
+     *                        [1] the task number to delete.
+     */
     private void handleDelete(String[] commandAndArgs) {
         try {
             int taskNumber = Integer.parseInt(commandAndArgs[1]);
@@ -87,6 +101,13 @@ public class Executor {
         }
     }
 
+    /**
+     * Handles the event command.
+     * @param commandAndArgs, [0] the command,
+     *                        [1] the name of the event,
+     *                        [2] the start date and time of the event,
+     *                        [3] the end date and time of the event.
+     */
     private void handleEvent(String[] commandAndArgs) {
         try {
             taskPool.addEvent(commandAndArgs[1], commandAndArgs[2], commandAndArgs[3]);
@@ -98,6 +119,12 @@ public class Executor {
         }
     }
 
+    /**
+     * Handles the deadline command.
+     * @param commandAndArgs, [0] the command,
+     *                        [1] the name of the deadline,
+     *                        [2] the date and time of the deadline.
+     */
     private void handleDeadline(String[] commandAndArgs) {
         try {
             taskPool.addDeadline(commandAndArgs[1], commandAndArgs[2]);
@@ -109,6 +136,11 @@ public class Executor {
         }
     }
 
+    /**
+     * Handles the todo command.
+     * @param commandAndArgs, [0] the command,
+     *                        [1] the name of the todo.
+     */
     private void handleTodo(String[] commandAndArgs) {
         try {
             taskPool.addToDo(commandAndArgs[1]);
@@ -118,6 +150,11 @@ public class Executor {
         }
     }
 
+    /**
+     * Handles the unmark command.
+     * @param commandAndArgs, [0] the command,
+     *                        [1] the task number to unmark.
+     */
     private void handleUnmark(String[] commandAndArgs) {
         try {
             int taskNumber = Integer.parseInt(commandAndArgs[1]);
@@ -131,10 +168,18 @@ public class Executor {
         }
     }
 
+    /**
+     * list all the current tasks in the task pool.
+     */
     private void handleList() {
         ui.printTasks(taskPool);
     }
 
+    /**
+     * Handles the mark command.
+     * @param commandAndArgs, [0] the command,
+     *                        [1] the task number to mark.
+     */
     private void handleMark(String[] commandAndArgs) {
         try {
             int taskNumber = Integer.parseInt(commandAndArgs[1]);
@@ -148,6 +193,11 @@ public class Executor {
         }
     }
 
+    /**
+     * Handles the find command.
+     * @param commandAndArgs, [0] the command,
+     *                        [1] the keyword to search for.
+     */
     private void handleFind(String[] commandAndArgs) {
         try {
             List<Task> foundTasks = taskPool.findTask(commandAndArgs[1]);

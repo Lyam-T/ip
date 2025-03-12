@@ -50,31 +50,48 @@ public class Ui {
     static public final String INVALID_DATE_TIME_FORMAT = "Invalid date/time format! Please check your input and try again.";
     static public final String CORRECT_DATE_TIME_FORMAT = "Correct date/time format: yyyy-MM-dd HH:mm, ie 2021-09-30 18:00.";
 
+    /**
+     * Prints the welcoming message of the program Jake.
+     */
     public void printWelcomingMsg() {
         System.out.println(LINE_SEPARATOR);
         System.out.println(WELCOME);
         System.out.println(LINE_SEPARATOR);
     }
 
-
+    /**
+     * Prints the goodbye message of the program Jake.
+     */
     public void printByeMsg() {
         System.out.println(LINE_SEPARATOR);
         System.out.println(BYE);
         System.out.println(LINE_SEPARATOR);
     }
 
+    /**
+     * Prints the message for adding a task to the task pool.
+     */
     public void printAddTaskMsg(TaskPool taskPool) {
         System.out.println(ADD_TASK + INDENT);
         taskPool.printTask(taskPool.getTaskCount());
         System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount()) + MORE);
     }
 
+    /**
+     * Prints the message for deleting a task from the task pool.
+     */
     public void printDeleteTaskMsg(TaskPool taskPool, Integer taskNumber) {
         System.out.println(DELETE_TASK + INDENT);
         taskPool.printTask(taskNumber);
         System.out.println(String.format(NUM_TASKS, taskPool.getTaskCount() - 1) + BAD);
     }
 
+    /**
+     * Prints the message for marking a task done successfully or not.
+     * @param taskPool task pool containing the task to be marked.
+     * @param taskNumber the task number as shown in the list command, starting from 1.
+     * @param isMarked true if the task is successfully marked as done else false.
+     */
     public void printMarkTaskMsg(TaskPool taskPool, Integer taskNumber, Boolean isMarked) {
         if (!isMarked) {
             System.out.println(DONE_ALREADY);
@@ -84,6 +101,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the message for marking a task undone successfully or not.
+     * @param taskPool task pool containing the task to be unmarked.
+     * @param taskNumber the task number as shown in the list command, starting from 1.
+     * @param isUnmarked true if the task is successfully marked as undone else false.
+     */
     public void printUnmarkTaskMsg(TaskPool taskPool, Integer taskNumber, Boolean isUnmarked) {
         if (!isUnmarked) {
             System.out.println(UNDONE_ALREADY);
@@ -93,6 +116,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the message for finding a task in the task pool.
+     * @param taskPool task pool containing the task to be printed.
+     */
     public void printTasks(TaskPool taskPool) {
         if (taskPool.getTaskCount() == 0) {
             System.out.println(INDENT + "There are no tasks in your list.");
@@ -102,6 +129,9 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the message for incorrect format of date and time, and give the correct format with example.
+     */
     public void printDateTimeParseException() {
         System.out.println(INDENT + INVALID_DATE_TIME_FORMAT);
         System.out.println(INDENT + CORRECT_DATE_TIME_FORMAT);
