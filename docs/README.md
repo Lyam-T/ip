@@ -15,7 +15,7 @@ Jake is a app for task management and optimised for user who prefers command lin
 - [Command Summary](#command-summary)
 ## QuickStart
 1. Ensure you have Java 17 or above installed in your Computer. 
-2. Download the latest `jake.jar` from [here]()
+2. Download the latest `jake.jar` from [here](https://github.com/Lyam-T/ip/releases/tag/A-Release)
 3. Copy the file to the folder you want to use as the home folder for Jake.
 4. Open a terminal and navigate to the folder where the `jake.jar` is located, and run the command `java -jar jake.jar`
 ## Features
