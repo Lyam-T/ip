@@ -66,6 +66,5 @@ Format: `find <KEYWORD>`
 | Mark     | `mark <INDEX>` <br/> `unmark <INDEX>`                                                                              | `mark 1` <br/> `unmark 1`                                                                                                          |
 | Delete   | `delete <INDEX>`                                                                                                   | `delete 1`                                                                                                                        |
 | Find     | `find <KEYWORD>`                                                                                                   | `find book`                                                                                                                       |
-[BACK TO TOP](#jake-user-guide)
-```
 
+[BACK TO TOP](#jake-user-guide)
