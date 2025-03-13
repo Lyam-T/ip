@@ -53,6 +53,7 @@ Find tasks that contain the keyword.
 Format: `find <KEYWORD>`  
 `<KEYWORD>` is case-sensitive, and is referred to the description of the task. See [Add Task](#add-task) for more information about description.
 ## Command Summary
+
 Command | Fomat | Example
 --------|------------------|---------
 Add Task | `todo <DESCRIPTION>` <br/> `deadline <DESCRIPTION> /by <DATE>` <br/> `event <DESCRIPTION> /from <DATE> /to <DATE>` | `todo read book` <br/> `deadline homework1 /by 2021-09-17 23:59` <br/> `event party /from 2021-09-18 18:00 /to 2021-099-18 23:00`  
