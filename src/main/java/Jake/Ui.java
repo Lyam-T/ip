@@ -2,6 +2,9 @@ package Jake;
 
 import Jake.TaskManagement.TaskPool;
 
+import java.time.format.DateTimeParseException;
+import java.util.Objects;
+
 /**
  * Contains all the message prompts and related functions that the end user will see.
  */
@@ -139,20 +142,15 @@ public class Ui {
 
     public void printException(String command, Exception e) {
         System.out.print(INDENT + Command.valueOf(command.toUpperCase()));
-        switch (e.getClass().getName()) {
-            case "IndexOutOfBoundsException" -> {
-                System.out.println(INDENT + command + MISSING_PARAMS);
-            }
-            case "NumberFormatException" -> {
-                System.out.println(INDENT + command + INVALID_PARAMS);
-            }
-            case "DateTimeParseException" -> {
-                System.out.println(INDENT + INVALID_DATE_TIME_FORMAT);
-                System.out.println(INDENT + CORRECT_DATE_TIME_FORMAT);
-            }
-            default -> {
-                System.out.println(INDENT + e.getMessage());
-            }
+        if (e instanceof IndexOutOfBoundsException) {
+            System.out.println(INDENT + MISSING_PARAMS);
+        } else if (e instanceof NumberFormatException) {
+            System.out.println(INDENT + INVALID_PARAMS);
+        } else if (e instanceof DateTimeParseException) {
+            System.out.println(INDENT + INVALID_DATE_TIME_FORMAT);
+            System.out.println(INDENT + CORRECT_DATE_TIME_FORMAT);
+        } else {
+            System.out.println(INDENT + e.getMessage());
         }
     }
 }
